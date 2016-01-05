@@ -34,7 +34,7 @@ TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 # Kernel
 BOARD_KERNEL_BASE := 0x80600000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_CMDLINE := console=none androidboot.hardware=qcom user_debug=31
+BOARD_KERNEL_CMDLINE := console=none androidboot.hardware=qcom user_debug=31 androidboot.selinux=permissive
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01800000
 TARGET_KERNEL_CONFIG := slim_m7_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
@@ -93,6 +93,22 @@ BOARD_SEPOLICY_DIRS += \
 BOARD_SEPOLICY_UNION += \
     akmd.te \
     cir_fw_update.te
+
+# TWRP
+DEVICE_RESOLUTION := 1080x1920
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
+TW_FLASH_FROM_STORAGE := true
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_HAS_NO_REAL_SDCARD := true
+TW_INCLUDE_JB_CRYPTO := true
+TW_NO_USB_STORAGE := true
+BOARD_RECOVERY_BLDRMSG_OFFSET := 2048
+RECOVERY_VARIANT := twrp
+TARGET_RECOVERY_DEVICE_MODULES := chargeled
+TW_THEME := portrait_hdpi
 
 # USB
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file

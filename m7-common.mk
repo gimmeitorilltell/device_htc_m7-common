@@ -135,6 +135,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
 
+# TWRP Recovery-Ramdisk
+PRODUCT_PACKAGES += \
+    twrp.fstab
+
 # WiFi
 PRODUCT_PACKAGES += \
     libnetcmdiface
