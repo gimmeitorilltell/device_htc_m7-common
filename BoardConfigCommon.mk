@@ -85,7 +85,7 @@ TARGET_KERNEL_SOURCE := kernel/htc/msm8960
 BOARD_GLOBAL_CFLAGS := -DBOARD_RECOVERY_BLDRMSG_OFFSET=2048
 BOARD_NO_SECURE_DISCARD := true
 TARGET_RECOVERY_DEVICE_DIRS += device/htc/m7-common
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery.fstab
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
@@ -101,6 +101,14 @@ DEFAULT_ROOT_METHOD := magisk
 -include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += device/htc/m7-common/sepolicy
+
+# TWRP
+RECOVERY_SDCARD_ON_DATA := true
+RECOVERY_VARIANT := twrp
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_NTFS_3G := true
+TW_TARGET_USES_QCOM_BSP := true
+TW_THEME := portrait_hdpi
 
 # We have the new GPS driver
 BOARD_HAVE_NEW_QC_GPS := true
