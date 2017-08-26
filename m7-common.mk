@@ -70,6 +70,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/idc/projector_input.idc:system/usr/idc/projector_input.idc \
     $(LOCAL_PATH)/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc
 
+# IRDA
+PRODUCT_PACKAGES += \
+    android.hardware.ir@1.0-impl
+
 # Keylayouts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
@@ -95,7 +99,8 @@ PRODUCT_COPY_FILES += \
 
 # NFC
 PRODUCT_PACKAGES += \
-    com.android.nfc_extras \
+    android.hardware.nfc@1.0-impl \
+    nfc.msm8960 \
     libnfc \
     libnfc_jni \
     libnfc_ndef \
