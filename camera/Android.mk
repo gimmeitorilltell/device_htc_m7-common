@@ -22,6 +22,7 @@ include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 
 LOCAL_C_INCLUDES := \
+    $(LOCAL_PATH)/../include \
     framework/native/include \
     system/media/camera/include
 
