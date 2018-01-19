@@ -22,7 +22,7 @@ LOCAL_SRC_FILES := \
 LOCAL_SHARED_LIBRARIES := libicuuc libicui18n
 LOCAL_MODULE := libqc-opt_shim
 LOCAL_MODULE_TAGS := optional
-
+LOCAL_PROPRIETARY_MODULE := true
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
@@ -62,5 +62,5 @@ LOCAL_SRC_FILES := atomic.cpp
 LOCAL_MODULE := libshims_atomic
 LOCAL_MODULE_TAGS := optional
 LOCAL_SHARED_LIBRARIES := liblog
-
+LOCAL_PROPRIETARY_MODULE := true
 include $(BUILD_SHARED_LIBRARY)
