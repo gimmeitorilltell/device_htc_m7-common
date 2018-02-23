@@ -50,9 +50,6 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Charger
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 
-# Dependencies
-ALLOW_MISSING_DEPENDENCIES=true
-
 # CMHW
 BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw
 
