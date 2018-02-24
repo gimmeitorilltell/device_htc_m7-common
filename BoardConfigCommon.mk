@@ -50,8 +50,8 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Charger
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 
-# CMHW
-BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw
+# LINEAGEHW
+BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/lineagehw
 
 # Filesystem
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
@@ -75,7 +75,7 @@ TARGET_KERNEL_CONFIG := m7_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
 
 # HIDL
-DEVICE_MANIFEST_FILE += device/htc/t6-common/manifest.xml
+DEVICE_MANIFEST_FILE += device/htc/m7-common/manifest.xml
 
 # Recovery
 BOARD_GLOBAL_CFLAGS := -DBOARD_RECOVERY_BLDRMSG_OFFSET=2048
