@@ -21,7 +21,7 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 
-LOCAL_C_INCLUDES := \
+LOCAL_C_INCLUDES += \
     $(LOCAL_PATH)/../include \
     framework/native/include \
     system/media/camera/include
@@ -33,14 +33,15 @@ LOCAL_SHARED_LIBRARIES := \
     libhardware \
     liblog \
     libcamera_client \
-    libgui \
-    libhidltransport \
-    libsensor \
     libutils \
-    android.hidl.token@1.0-utils
+    libcutils \
+    libdl \
+    android.hidl.token@1.0-utils \
+    android.hardware.graphics.bufferqueue@1.0
 
 LOCAL_STATIC_LIBRARIES := \
-    libarect
+    libarect \
+    libbase
 
 LOCAL_HEADER_LIBRARIES := libnativebase_headers
 

@@ -28,20 +28,30 @@ TARGET_SCREEN_WIDTH := 1080
 
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4335/device-bcm.mk)
 
 # Audio
 PRODUCT_PACKAGES += \
     audio_amplifier.msm8960
 
+# Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+    $(LOCAL_PATH)/configs/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
     $(LOCAL_PATH)/configs/audio_platform_info.xml:system/etc/audio_platform_info.xml \
-    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
+    $(LOCAL_PATH)/configs/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
     $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml
+
+# Audio
+PRODUCT_COPY_FILES += \
+    frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:system/vendor/etc/a2dp_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:system/vendor/etc/audio_policy_volumes.xml \
+    frameworks/av/services/audiopolicy/config/default_volume_tables.xml:system/vendor/etc/default_volume_tables.xml \
+    frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:system/vendor/etc/r_submix_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:system/vendor/etc/usb_audio_policy_configuration.xml
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/bluetooth/bcm4335_prepatch.hcd:system/vendor/firmware/bcm4335_prepatch.hcd
+    $(LOCAL_PATH)/bluetooth/bcm4335_prepatch.hcd:$(TARGET_COPY_OUT_VENDOR)/firmware/bcm4335_prepatch.hcd
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -51,16 +61,16 @@ PRODUCT_PACKAGES += \
 
 # Camera HIDL interfaces
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-impl-legacy \
-    camera.device@1.0-impl-legacy
+    android.hardware.camera.provider@2.4-impl \
+    camera.device@1.0-impl
 
 # Charger
 WITH_LINEAGE_CHARGER := false
 
-
 # GPS
-#PRODUCT_PACKAGES += \
-#    gps.msm8960
+PRODUCT_PACKAGES += \
+    libgps.utils \
+    gps.msm8960
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
@@ -70,16 +80,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/idc/projector_input.idc:system/usr/idc/projector_input.idc \
     $(LOCAL_PATH)/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc
 
-# IRDA
-PRODUCT_PACKAGES += \
-    android.hardware.ir@1.0-impl
-
 # Keylayouts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
     $(LOCAL_PATH)/keylayout/keypad_8960.kl:system/usr/keylayout/keypad_8960.kl \
     $(LOCAL_PATH)/keylayout/projector-Keypad.kl:system/usr/keylayout/projector-Keypad.kl \
-    $(LOCAL_PATH)/keylayout/synaptics-rmi-touchscreen.kl:system/usr/keylayout/synaptics-rmi-touchscreen.kl \
+    $(LOCAL_PATH)/keylayout/synaptics-rmi-touchscreen.kl:system/usr/keylayout/synaptics-rmi-touchscreen.kl
 
 # Keystore
 PRODUCT_PACKAGES += \
@@ -91,16 +97,23 @@ PRODUCT_PACKAGES += \
 
 # Log
 PRODUCT_PACKAGES += \
-    liblog_shim
+    liblog_shim \
+    libshim_atomic
 
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-service \
+    android.hardware.drm@1.0-service.widevine
+
 # NFC
 PRODUCT_PACKAGES += \
+    com.android.nfc_extras \
     android.hardware.nfc@1.0-impl \
-    nfc.msm8960 \
     libnfc \
     libnfc_jni \
     libnfc_ndef \
@@ -157,24 +170,20 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
 
-# USB debugging at boot
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp,adb \
-    ro.adb.secure=0 \
-    ro.secure=0 \
-    ro.debuggable=1
-
-# Voice processing
+# Usb
 PRODUCT_PACKAGES += \
-    libqcomvoiceprocessing
-
-# Widevine
-PRODUCT_PACKAGES += \
-    libshim_wvm
+    com.android.future.usb.accessory
 
 # WiFi
 PRODUCT_PACKAGES += \
-    libnetcmdiface
+    android.hardware.wifi@1.0-service \
+    libnetcmdiface \
+    hostapd \
+    wpa_supplicant \
+    wpa_supplicant.conf \
+    libwifi-hal-bcm \
+    libwpa_client \
+    wificond
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/calibration:system/etc/calibration \

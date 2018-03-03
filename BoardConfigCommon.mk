@@ -28,20 +28,24 @@
 # inherit from common msm8960
 -include device/htc/msm8960-common/BoardConfigCommon.mk
 
-LOCAL_PATH := device/htc/m7-common
+PLATFORM_PATH := device/htc/m7-common
 
 # Audio
 BOARD_HAVE_HTC_CSDCLIENT := true
 USE_CUSTOM_AUDIO_POLICY := 1
+USE_XML_AUDIO_POLICY_CONF := 1
 
 # Bluetooth
-BOARD_CUSTOM_BT_CONFIG := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_CUSTOM_BT_CONFIG := $(PLATFORM_PATH)/bluetooth/libbt_vndcfg.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(PLATFORM_PATH)/bluetooth
 BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
 BOARD_HAVE_BLUETOOTH_BCM := true
 
 # Boot animation
 TARGET_BOOTANIMATION_HALF_RES := true
+
+# Gps
+USE_DEVICE_SPECIFIC_GPS := true
 
 # Camera
 TARGET_DISPLAY_INSECURE_MM_HEAP := true
@@ -49,9 +53,6 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Charger
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
-
-# dex pre-optimizations
-WITH_DEXPREOPT := true
 
 # LINEAGEHW
 BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/lineagehw
@@ -76,6 +77,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01800000
 TARGET_KERNEL_CONFIG := m7_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
+TARGET_COMPILE_WITH_MSM_KERNEL := true
 
 # HIDL
 DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
@@ -84,7 +86,7 @@ DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
 BOARD_GLOBAL_CFLAGS := -DBOARD_RECOVERY_BLDRMSG_OFFSET=2048
 BOARD_NO_SECURE_DISCARD := true
 TARGET_RECOVERY_DEVICE_DIRS += device/htc/m7-common
-TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/rootdir/etc/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
@@ -93,9 +95,9 @@ TARGET_USERIMAGES_USE_F2FS := true
 BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 
 # SELinux
-#-include device/qcom/sepolicy/sepolicy.mk
-
-# BOARD_SEPOLICY_DIRS += device/htc/m7-common/sepolicy
+-include device/qcom/sepolicy/sepolicy.mk
+-include device/qcom/sepolicy/legacy-sepolicy.mk
+BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy
 
 # Wifi
 BOARD_HOSTAPD_DRIVER             := NL80211
@@ -103,10 +105,10 @@ BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
 BOARD_WLAN_DEVICE                := bcmdhd
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-WIFI_DRIVER_FW_PATH_AP           := "/system/etc/firmware/fw_bcm4335_apsta_b0.bin"
-WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/firmware/fw_bcm4335_p2p_b0.bin"
+WIFI_DRIVER_FW_PATH_AP           := "/system/etc/firmware/fw_bcmdhd_apsta_b0.bin"
+WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/firmware/fw_bcmdhd_p2p_b0.bin"
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
-WIFI_DRIVER_FW_PATH_STA          := "/system/etc/firmware/fw_bcm4335_b0.bin"
+WIFI_DRIVER_FW_PATH_STA          := "/system/etc/firmware/fw_bcmdhd_b0.bin"
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
 
 # inherit from the proprietary version
