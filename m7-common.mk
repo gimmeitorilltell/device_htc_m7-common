@@ -113,7 +113,6 @@ PRODUCT_PACKAGES += \
 # NFC
 PRODUCT_PACKAGES += \
     com.android.nfc_extras \
-    android.hardware.nfc@1.0-impl \
     libnfc \
     libnfc_jni \
     libnfc_ndef \
@@ -168,7 +167,6 @@ PRODUCT_PACKAGES += \
 
 # WiFi
 PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-service \
     libnetcmdiface \
     hostapd \
     wpa_supplicant \
