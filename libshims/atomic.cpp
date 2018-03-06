@@ -19,4 +19,3 @@
 extern "C" {
 #include <cutils/atomic.h>
 }
-
