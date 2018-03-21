@@ -90,6 +90,14 @@ endif
 PRODUCT_COPY_FILES += \
     $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
+# Power
+PRODUCT_PACKAGES += \
+    power.qcom
+
+PRODUCT_PACKAGES += \
+    android.hardware.power@1.0-impl \
+    android.hardware.power@1.0-service
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
