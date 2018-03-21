@@ -227,6 +227,13 @@ PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service \
     com.android.future.usb.accessory
 
+# USB debugging at boot
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=mtp,adb \
+    ro.adb.secure=0 \
+    ro.secure=0 \
+    ro.debuggable=1
+
 # Vendor Interface Manifest
 DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
 
