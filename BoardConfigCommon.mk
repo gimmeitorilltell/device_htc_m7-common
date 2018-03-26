@@ -25,7 +25,7 @@
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
 
-LOCAL_PATH := device/htc/m7-common
+DEVICE_PATH := device/htc/m7-common
 
 BOARD_VENDOR := htc
 
@@ -106,13 +106,13 @@ TARGET_KERNEL_CONFIG := m7_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
 
 # HIDL
-DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
 # LINEAGEHW
-BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/lineagehw
+BOARD_HARDWARE_CLASS := $(DEVICE_PATH)/lineagehw
 
 # NFC
 BOARD_NFC_HAL_SUFFIX := msm8960
