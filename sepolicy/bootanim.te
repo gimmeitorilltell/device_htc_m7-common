@@ -1,0 +1,2 @@
+allow bootanim debugfs:file { open write };
+allow bootanim device:chr_file { open read write };

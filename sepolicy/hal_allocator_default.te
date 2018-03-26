@@ -1,0 +1,2 @@
+allow hal_allocator_default debugfs:file { open write };
+allow hal_allocator_default sysfs:file { getattr open read };
