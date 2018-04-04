@@ -252,7 +252,7 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>vendor.candy.power</name>
+        <name>vendor.lineage.power</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
         <interface>
