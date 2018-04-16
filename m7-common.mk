@@ -67,6 +67,18 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
+# NFC
+PRODUCT_PACKAGES += \
+    android.hardware.nfc@1.0-impl \
+    nfc.msm8960 \
+    libnfc \
+    libnfc_ndef \
+    libnfc_jni \
+    libpn544_fw \
+    Nfc \
+    Tag \
+    com.android.nfc_extras
+
 ifeq ($(TARGET_BUILD_VARIANT),user)
     NFCEE_ACCESS_PATH := $(LOCAL_PATH)/configs/nfcee_access.xml
 else
@@ -86,6 +98,9 @@ PRODUCT_PACKAGES += \
 
 # SDCard
 PRODUCT_CHARACTERISTICS := nosdcard
+
+# Charger
+WITH_LINEAGE_CHARGER := false
 
 # Shims
 PRODUCT_PACKAGES += \
