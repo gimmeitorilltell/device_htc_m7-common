@@ -1,4 +1,0 @@
-type ion_debugfs, fs_type, debugfs_type;
-type surfaceflinger_sysfs, fs_type, sysfs_type;
-type vibeamp_sysfs, fs_type, sysfs_type;
-type debugfs_power_stats, fs_type, debugfs_type;
