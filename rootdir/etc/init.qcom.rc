@@ -434,6 +434,8 @@ on property:init.svc.bootanim=stopped
     write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
 
 on property:sys.boot_completed=1
+    # Enable ZRAM on boot_complete
+    swapon_all /vendor/etc/fstab.qcom
     restart qcamerasvr
 
 on property:service.adb.root=1
