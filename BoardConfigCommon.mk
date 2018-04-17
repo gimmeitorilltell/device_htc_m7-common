@@ -44,6 +44,10 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 # Boot animation
 TARGET_BOOTANIMATION_HALF_RES := true
 
+# Build a separate vendor image holding only device specific properties
+BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
+TARGET_COPY_OUT_VENDOR := vendor
+
 # Gps
 USE_DEVICE_SPECIFIC_GPS := true
 
