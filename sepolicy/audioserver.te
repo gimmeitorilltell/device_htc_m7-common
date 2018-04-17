@@ -1,3 +1,5 @@
 allow audioserver qmuxd:unix_stream_socket connectto;
 allow audioserver qmuxd_socket:dir w_dir_perms;
 allow audioserver qmuxd_socket:sock_file create_file_perms;
+allow audioserver sysfs_audio_cal:file r_file_perms;
+allow audioserver audioserver:sysfs { getattr }
